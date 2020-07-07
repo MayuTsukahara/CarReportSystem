@@ -134,6 +134,11 @@ namespace CarReportSystem {
             }
             CarMaker cm = (CarMaker)Enum.Parse(typeof(CarMaker), str);
             return cm;
+            
+            //先生の
+            //ラジオボタンのタグに数字を登録して、それで判断してる
+            //RadioButton selectMaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
+            //return (CarMaker)int.Parse(selectMaker.Tag.ToString());
         }
         private void CheckMakerButton(CarMaker cm) {
             switch (cm) {
