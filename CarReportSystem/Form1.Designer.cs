@@ -76,7 +76,6 @@
             this.dtpWriteDate.Name = "dtpWriteDate";
             this.dtpWriteDate.Size = new System.Drawing.Size(134, 19);
             this.dtpWriteDate.TabIndex = 1;
-            this.dtpWriteDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label2
             // 
@@ -94,7 +93,6 @@
             this.cbAuthorName.Name = "cbAuthorName";
             this.cbAuthorName.Size = new System.Drawing.Size(227, 20);
             this.cbAuthorName.TabIndex = 2;
-            this.cbAuthorName.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -167,6 +165,7 @@
             this.dgbCarReport.RowTemplate.Height = 21;
             this.dgbCarReport.Size = new System.Drawing.Size(659, 208);
             this.dgbCarReport.TabIndex = 5;
+            this.dgbCarReport.Click += new System.EventHandler(this.dgbCarReport_CClick);
             // 
             // btExit
             // 
@@ -196,6 +195,7 @@
             this.btDataUpDate.TabIndex = 6;
             this.btDataUpDate.Text = "修正";
             this.btDataUpDate.UseVisualStyleBackColor = true;
+            this.btDataUpDate.Click += new System.EventHandler(this.btDataUpDate_Click);
             // 
             // btDataDelete
             // 
@@ -205,6 +205,7 @@
             this.btDataDelete.TabIndex = 6;
             this.btDataDelete.Text = "削除";
             this.btDataDelete.UseVisualStyleBackColor = true;
+            this.btDataDelete.Click += new System.EventHandler(this.btDataDelete_Click);
             // 
             // btImageOpen
             // 
@@ -214,6 +215,7 @@
             this.btImageOpen.TabIndex = 6;
             this.btImageOpen.Text = "開く";
             this.btImageOpen.UseVisualStyleBackColor = true;
+            this.btImageOpen.Click += new System.EventHandler(this.btImageOpen_Click);
             // 
             // btImageDelete
             // 
@@ -223,12 +225,16 @@
             this.btImageDelete.TabIndex = 6;
             this.btImageDelete.Text = "削除";
             this.btImageDelete.UseVisualStyleBackColor = true;
+            this.btImageDelete.Click += new System.EventHandler(this.btImageDelete_Click);
             // 
             // pbCarImage
             // 
+            this.pbCarImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbCarImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbCarImage.Location = new System.Drawing.Point(546, 48);
             this.pbCarImage.Name = "pbCarImage";
             this.pbCarImage.Size = new System.Drawing.Size(242, 226);
+            this.pbCarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCarImage.TabIndex = 7;
             this.pbCarImage.TabStop = false;
             // 
@@ -313,6 +319,7 @@
             this.btDataOpen.TabIndex = 6;
             this.btDataOpen.Text = "開く";
             this.btDataOpen.UseVisualStyleBackColor = true;
+            this.btDataOpen.Click += new System.EventHandler(this.btDataOpen_Click);
             // 
             // btDataSave
             // 
@@ -322,10 +329,12 @@
             this.btDataSave.TabIndex = 6;
             this.btDataSave.Text = "保存";
             this.btDataSave.UseVisualStyleBackColor = true;
+            this.btDataSave.Click += new System.EventHandler(this.btDataSave_Click);
             // 
             // ofdOpenImage
             // 
             this.ofdOpenImage.FileName = "openFileDialog1";
+            this.ofdOpenImage.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // ofdOpenData
             // 
