@@ -35,36 +35,44 @@
             this.tbReport = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgbCarReport = new System.Windows.Forms.DataGridView();
-            this.btExit = new System.Windows.Forms.Button();
             this.btDataAdd = new System.Windows.Forms.Button();
             this.btDataUpDate = new System.Windows.Forms.Button();
             this.btDataDelete = new System.Windows.Forms.Button();
             this.btImageOpen = new System.Windows.Forms.Button();
             this.btImageDelete = new System.Windows.Forms.Button();
             this.pbCarImage = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.rbNissan = new System.Windows.Forms.RadioButton();
             this.rbHonda = new System.Windows.Forms.RadioButton();
             this.rbSubaru = new System.Windows.Forms.RadioButton();
             this.rbForeignCar = new System.Windows.Forms.RadioButton();
             this.rbEtCetera = new System.Windows.Forms.RadioButton();
-            this.btDataOpen = new System.Windows.Forms.Button();
-            this.btDataSave = new System.Windows.Forms.Button();
             this.ofdOpenImage = new System.Windows.Forms.OpenFileDialog();
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.記事データを開くOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUpDataSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.名前を付けて保存するToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.終了するXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbMaker = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslDataCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sfdSaveData2 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgbCarReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.gbMaker.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 19);
+            this.label1.Location = new System.Drawing.Point(25, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
@@ -72,7 +80,7 @@
             // 
             // dtpWriteDate
             // 
-            this.dtpWriteDate.Location = new System.Drawing.Point(102, 14);
+            this.dtpWriteDate.Location = new System.Drawing.Point(66, 37);
             this.dtpWriteDate.Name = "dtpWriteDate";
             this.dtpWriteDate.Size = new System.Drawing.Size(134, 19);
             this.dtpWriteDate.TabIndex = 1;
@@ -80,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 54);
+            this.label2.Location = new System.Drawing.Point(13, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 0;
@@ -89,7 +97,7 @@
             // cbAuthorName
             // 
             this.cbAuthorName.FormattingEnabled = true;
-            this.cbAuthorName.Location = new System.Drawing.Point(102, 51);
+            this.cbAuthorName.Location = new System.Drawing.Point(66, 71);
             this.cbAuthorName.Name = "cbAuthorName";
             this.cbAuthorName.Size = new System.Drawing.Size(227, 20);
             this.cbAuthorName.TabIndex = 2;
@@ -97,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 91);
+            this.label3.Location = new System.Drawing.Point(12, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 12);
             this.label3.TabIndex = 0;
@@ -117,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 131);
+            this.label4.Location = new System.Drawing.Point(25, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 0;
@@ -126,7 +134,7 @@
             // cbCarName
             // 
             this.cbCarName.FormattingEnabled = true;
-            this.cbCarName.Location = new System.Drawing.Point(102, 128);
+            this.cbCarName.Location = new System.Drawing.Point(66, 151);
             this.cbCarName.Name = "cbCarName";
             this.cbCarName.Size = new System.Drawing.Size(227, 20);
             this.cbCarName.TabIndex = 2;
@@ -134,7 +142,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 175);
+            this.label5.Location = new System.Drawing.Point(13, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 12);
             this.label5.TabIndex = 0;
@@ -142,16 +150,16 @@
             // 
             // tbReport
             // 
-            this.tbReport.Location = new System.Drawing.Point(102, 172);
+            this.tbReport.Location = new System.Drawing.Point(66, 177);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
-            this.tbReport.Size = new System.Drawing.Size(395, 108);
+            this.tbReport.Size = new System.Drawing.Size(476, 158);
             this.tbReport.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 354);
+            this.label6.Location = new System.Drawing.Point(24, 344);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 0;
@@ -160,26 +168,17 @@
             // dgbCarReport
             // 
             this.dgbCarReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgbCarReport.Location = new System.Drawing.Point(155, 309);
+            this.dgbCarReport.Location = new System.Drawing.Point(89, 344);
             this.dgbCarReport.Name = "dgbCarReport";
             this.dgbCarReport.RowTemplate.Height = 21;
-            this.dgbCarReport.Size = new System.Drawing.Size(659, 208);
+            this.dgbCarReport.Size = new System.Drawing.Size(725, 214);
             this.dgbCarReport.TabIndex = 5;
+            this.dgbCarReport.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbCarReport_CClick);
             this.dgbCarReport.Click += new System.EventHandler(this.dgbCarReport_CClick);
-            // 
-            // btExit
-            // 
-            this.btExit.Location = new System.Drawing.Point(676, 523);
-            this.btExit.Name = "btExit";
-            this.btExit.Size = new System.Drawing.Size(145, 23);
-            this.btExit.TabIndex = 6;
-            this.btExit.Text = "終了";
-            this.btExit.UseVisualStyleBackColor = true;
-            this.btExit.Click += new System.EventHandler(this.btExit_Click);
             // 
             // btDataAdd
             // 
-            this.btDataAdd.Location = new System.Drawing.Point(522, 280);
+            this.btDataAdd.Location = new System.Drawing.Point(548, 292);
             this.btDataAdd.Name = "btDataAdd";
             this.btDataAdd.Size = new System.Drawing.Size(72, 23);
             this.btDataAdd.TabIndex = 6;
@@ -189,7 +188,7 @@
             // 
             // btDataUpDate
             // 
-            this.btDataUpDate.Location = new System.Drawing.Point(619, 280);
+            this.btDataUpDate.Location = new System.Drawing.Point(645, 292);
             this.btDataUpDate.Name = "btDataUpDate";
             this.btDataUpDate.Size = new System.Drawing.Size(72, 23);
             this.btDataUpDate.TabIndex = 6;
@@ -199,7 +198,7 @@
             // 
             // btDataDelete
             // 
-            this.btDataDelete.Location = new System.Drawing.Point(716, 280);
+            this.btDataDelete.Location = new System.Drawing.Point(742, 292);
             this.btDataDelete.Name = "btDataDelete";
             this.btDataDelete.Size = new System.Drawing.Size(72, 23);
             this.btDataDelete.TabIndex = 6;
@@ -209,7 +208,7 @@
             // 
             // btImageOpen
             // 
-            this.btImageOpen.Location = new System.Drawing.Point(598, 19);
+            this.btImageOpen.Location = new System.Drawing.Point(644, 32);
             this.btImageOpen.Name = "btImageOpen";
             this.btImageOpen.Size = new System.Drawing.Size(72, 23);
             this.btImageOpen.TabIndex = 6;
@@ -219,7 +218,7 @@
             // 
             // btImageDelete
             // 
-            this.btImageDelete.Location = new System.Drawing.Point(676, 19);
+            this.btImageDelete.Location = new System.Drawing.Point(722, 32);
             this.btImageDelete.Name = "btImageDelete";
             this.btImageDelete.Size = new System.Drawing.Size(72, 23);
             this.btImageDelete.TabIndex = 6;
@@ -231,26 +230,17 @@
             // 
             this.pbCarImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbCarImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbCarImage.Location = new System.Drawing.Point(546, 48);
+            this.pbCarImage.Location = new System.Drawing.Point(562, 60);
             this.pbCarImage.Name = "pbCarImage";
             this.pbCarImage.Size = new System.Drawing.Size(242, 226);
             this.pbCarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCarImage.TabIndex = 7;
             this.pbCarImage.TabStop = false;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(520, 24);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 12);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "label1";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(520, 24);
+            this.label8.Location = new System.Drawing.Point(585, 37);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 12);
             this.label8.TabIndex = 0;
@@ -311,26 +301,6 @@
             this.rbEtCetera.Text = "その他";
             this.rbEtCetera.UseVisualStyleBackColor = true;
             // 
-            // btDataOpen
-            // 
-            this.btDataOpen.Location = new System.Drawing.Point(37, 382);
-            this.btDataOpen.Name = "btDataOpen";
-            this.btDataOpen.Size = new System.Drawing.Size(72, 36);
-            this.btDataOpen.TabIndex = 6;
-            this.btDataOpen.Text = "開く";
-            this.btDataOpen.UseVisualStyleBackColor = true;
-            this.btDataOpen.Click += new System.EventHandler(this.btDataOpen_Click);
-            // 
-            // btDataSave
-            // 
-            this.btDataSave.Location = new System.Drawing.Point(37, 424);
-            this.btDataSave.Name = "btDataSave";
-            this.btDataSave.Size = new System.Drawing.Size(72, 36);
-            this.btDataSave.TabIndex = 6;
-            this.btDataSave.Text = "保存";
-            this.btDataSave.UseVisualStyleBackColor = true;
-            this.btDataSave.Click += new System.EventHandler(this.btDataSave_Click);
-            // 
             // ofdOpenImage
             // 
             this.ofdOpenImage.FileName = "openFileDialog1";
@@ -342,11 +312,63 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ファイルFToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(826, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ファイルFToolStripMenuItem
+            // 
+            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.記事データを開くOToolStripMenuItem,
+            this.tsmiUpDataSave,
+            this.名前を付けて保存するToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.終了するXToolStripMenuItem});
+            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
+            this.ファイルFToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
+            // 
+            // 記事データを開くOToolStripMenuItem
+            // 
+            this.記事データを開くOToolStripMenuItem.Name = "記事データを開くOToolStripMenuItem";
+            this.記事データを開くOToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.記事データを開くOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.記事データを開くOToolStripMenuItem.Text = "開く(&O)";
+            this.記事データを開くOToolStripMenuItem.Click += new System.EventHandler(this.btDataOpen_Click);
+            // 
+            // tsmiUpDataSave
+            // 
+            this.tsmiUpDataSave.Enabled = false;
+            this.tsmiUpDataSave.Name = "tsmiUpDataSave";
+            this.tsmiUpDataSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.tsmiUpDataSave.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUpDataSave.Text = "保存する(&S)";
+            this.tsmiUpDataSave.Click += new System.EventHandler(this.btDataSave_Click2);
+            // 
+            // 名前を付けて保存するToolStripMenuItem
+            // 
+            this.名前を付けて保存するToolStripMenuItem.Name = "名前を付けて保存するToolStripMenuItem";
+            this.名前を付けて保存するToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.名前を付けて保存するToolStripMenuItem.Text = "名前を付けて保存する";
+            this.名前を付けて保存するToolStripMenuItem.Click += new System.EventHandler(this.btDataSave_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 終了するXToolStripMenuItem
+            // 
+            this.終了するXToolStripMenuItem.Name = "終了するXToolStripMenuItem";
+            this.終了するXToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.終了するXToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了するXToolStripMenuItem.Text = "終了する(&X)";
+            this.終了するXToolStripMenuItem.Click += new System.EventHandler(this.btExit_Click);
             // 
             // gbMaker
             // 
@@ -356,27 +378,52 @@
             this.gbMaker.Controls.Add(this.rbSubaru);
             this.gbMaker.Controls.Add(this.rbForeignCar);
             this.gbMaker.Controls.Add(this.rbEtCetera);
-            this.gbMaker.Location = new System.Drawing.Point(102, 71);
+            this.gbMaker.Location = new System.Drawing.Point(66, 91);
             this.gbMaker.Name = "gbMaker";
             this.gbMaker.Size = new System.Drawing.Size(352, 51);
             this.gbMaker.TabIndex = 9;
             this.gbMaker.TabStop = false;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslTime,
+            this.tsslDataCount});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 561);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(826, 22);
+            this.statusStrip1.TabIndex = 10;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslTime
+            // 
+            this.tsslTime.Name = "tsslTime";
+            this.tsslTime.Size = new System.Drawing.Size(118, 17);
+            this.tsslTime.Text = "toolStripStatusLabel1";
+            // 
+            // tsslDataCount
+            // 
+            this.tsslDataCount.Name = "tsslDataCount";
+            this.tsslDataCount.Size = new System.Drawing.Size(118, 17);
+            this.tsslDataCount.Text = "toolStripStatusLabel1";
+            // 
+            // sfdSaveData2
+            // 
+            this.sfdSaveData2.Title = "保存する";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 558);
+            this.ClientSize = new System.Drawing.Size(826, 583);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbMaker);
             this.Controls.Add(this.pbCarImage);
             this.Controls.Add(this.btImageDelete);
             this.Controls.Add(this.btImageOpen);
             this.Controls.Add(this.btDataDelete);
             this.Controls.Add(this.btDataUpDate);
-            this.Controls.Add(this.btDataSave);
-            this.Controls.Add(this.btDataOpen);
             this.Controls.Add(this.btDataAdd);
-            this.Controls.Add(this.btExit);
             this.Controls.Add(this.dgbCarReport);
             this.Controls.Add(this.tbReport);
             this.Controls.Add(this.cbCarName);
@@ -384,7 +431,6 @@
             this.Controls.Add(this.dtpWriteDate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -397,8 +443,12 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgbCarReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,27 +468,33 @@
         private System.Windows.Forms.TextBox tbReport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgbCarReport;
-        private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.Button btDataAdd;
         private System.Windows.Forms.Button btDataUpDate;
         private System.Windows.Forms.Button btDataDelete;
         private System.Windows.Forms.Button btImageOpen;
         private System.Windows.Forms.Button btImageDelete;
         private System.Windows.Forms.PictureBox pbCarImage;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton rbNissan;
         private System.Windows.Forms.RadioButton rbHonda;
         private System.Windows.Forms.RadioButton rbSubaru;
         private System.Windows.Forms.RadioButton rbForeignCar;
         private System.Windows.Forms.RadioButton rbEtCetera;
-        private System.Windows.Forms.Button btDataOpen;
-        private System.Windows.Forms.Button btDataSave;
         private System.Windows.Forms.OpenFileDialog ofdOpenImage;
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.GroupBox gbMaker;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslTime;
+        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 記事データを開くOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUpDataSave;
+        private System.Windows.Forms.ToolStripMenuItem 終了するXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 名前を付けて保存するToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.SaveFileDialog sfdSaveData2;
+        private System.Windows.Forms.ToolStripStatusLabel tsslDataCount;
     }
 }
 

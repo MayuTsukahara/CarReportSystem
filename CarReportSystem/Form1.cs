@@ -14,6 +14,8 @@ using System.Windows.Forms;
 namespace CarReportSystem {
     public partial class Form1 : Form {
         BindingList<CarReport> _CarReports = new BindingList<CarReport>();
+        Timer timerUpdateStatusStrip;
+        string fileName;
 
         public Form1() {
             InitializeComponent();
@@ -61,7 +63,18 @@ namespace CarReportSystem {
         }
         private void Form1_Load(object sender, EventArgs e) {
             initButton();
+            DataCountLabel();
+            timerUpdateStatusStrip = new Timer();
+            timerUpdateStatusStrip.Interval = 100;
+            timerUpdateStatusStrip.Enabled = true;
+            timerUpdateStatusStrip.Tick += timerUpdateStatusStrip_Tick;
         }
+
+        private void timerUpdateStatusStrip_Tick(object sender, EventArgs e) {
+            //現在の日時を更新する
+            UpdateDateTimeStatusBar();
+        }
+
         private void btExit_Click(object sender, EventArgs e) {
             Application.Exit();
         }
@@ -89,11 +102,13 @@ namespace CarReportSystem {
             
             inputAllClear();
             initButton();
+            DataCountLabel();
         }
 
         private void btDataDelete_Click(object sender, EventArgs e) {
             _CarReports.RemoveAt(dgbCarReport.CurrentRow.Index);
             initButton();
+            DataCountLabel();
         }
 
         private void btDataUpDate_Click(object sender, EventArgs e) {
@@ -112,17 +127,20 @@ namespace CarReportSystem {
         private void dgbCarReport_CClick(object sender, EventArgs e) {
             //選択したレコードを取り出す
             //DataGridView で選択した行のインデックス
-            CarReport selectedCarReport = _CarReports[dgbCarReport.CurrentRow.Index];
-            if (selectedCarReport.Date >= dtpWriteDate.MinDate &&selectedCarReport.Date <= dtpWriteDate.MaxDate) {
-                dtpWriteDate.Value = selectedCarReport.Date;
+            if (dgbCarReport.CurrentRow != null) {
+                CarReport selectedCarReport = _CarReports[dgbCarReport.CurrentRow.Index];
+            
+            
+                if (selectedCarReport.Date >= dtpWriteDate.MinDate &&selectedCarReport.Date <= dtpWriteDate.MaxDate) {
+                    dtpWriteDate.Value = selectedCarReport.Date;
+                }
+                cbAuthorName.Text = selectedCarReport.Author;
+                CheckMakerButton(selectedCarReport.Maker);
+                cbCarName.Text = selectedCarReport.CarName;
+                tbReport.Text    = selectedCarReport.Report;
+                pbCarImage.Image = selectedCarReport.Picture;
+                initButton();
             }
-            cbAuthorName.Text = selectedCarReport.Author;
-            CheckMakerButton(selectedCarReport.Maker);
-            cbCarName.Text = selectedCarReport.CarName;
-            tbReport.Text    = selectedCarReport.Report;
-            pbCarImage.Image = selectedCarReport.Picture;
-            initButton();
-
         }
         private CarMaker ReMakerButton() {
             var RadioButtonChecked_InGroup = gbMaker.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
@@ -181,11 +199,17 @@ namespace CarReportSystem {
         }
 
         private void btImageDelete_Click(object sender, EventArgs e) {
-            pbCarImage.Image = null;
+            DialogResult dr = MessageBox.Show("画像を削除してもいいですか？", "確認", MessageBoxButtons.OKCancel);
+            if (dr == System.Windows.Forms.DialogResult.OK) {
+                pbCarImage.Image = null;
+            }
+            
         }
 
         private void btDataOpen_Click(object sender, EventArgs e) {
             if (ofdOpenData.ShowDialog() == DialogResult.OK) {
+                fileName = ofdOpenData.FileName;
+                tsmiUpDataSave.Enabled = true;
                 using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open, FileAccess.Read)) {
                     try {
 
@@ -203,6 +227,7 @@ namespace CarReportSystem {
                     }
                 }
                 dgbCarReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                DataCountLabel();
             }
         }
 
@@ -221,6 +246,33 @@ namespace CarReportSystem {
                     }
                 }
             }
+        }
+        private void btDataSave_Click2(object sender, EventArgs e) {
+                BinaryFormatter formatter = new BinaryFormatter();
+                //ファイルストリームを生成
+                using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
+                    try {
+                        //シリアル化して保存
+                        formatter.Serialize(fs, _CarReports);
+                    } catch (SerializationException a) {
+                        Console.WriteLine("Failed to serialize. Reason: " + a.Message);
+                        throw;
+                    }
+                }
+        }
+        private void UpdateDateTimeStatusBar() {
+            //現在の日時を取得する
+            DateTime nowTime = DateTime.Now;
+            //日時を文字列に変換する
+            string newText = nowTime.ToString();
+            //表示する文字列が前と違う場合は、更新する
+            if (!tsslTime.Text.Equals(newText,
+                StringComparison.Ordinal)) {
+                tsslTime.Text = newText;
+            }
+        }
+        private void DataCountLabel() {
+            tsslDataCount.Text = "データ件数：" + _CarReports.Count.ToString();
         }
     }
     
