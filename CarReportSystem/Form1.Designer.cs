@@ -306,10 +306,6 @@
             this.ofdOpenImage.FileName = "openFileDialog1";
             this.ofdOpenImage.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // ofdOpenData
-            // 
-            this.ofdOpenData.FileName = "openFileDialog1";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {

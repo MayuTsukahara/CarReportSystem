@@ -199,11 +199,12 @@ namespace CarReportSystem {
         }
 
         private void btImageDelete_Click(object sender, EventArgs e) {
-            DialogResult dr = MessageBox.Show("画像を削除してもいいですか？", "確認", MessageBoxButtons.OKCancel);
-            if (dr == System.Windows.Forms.DialogResult.OK) {
-                pbCarImage.Image = null;
+            if (pbCarImage.Image == null) {
+                DialogResult dr = MessageBox.Show("画像を削除してもいいですか？", "確認", MessageBoxButtons.OKCancel);
+                if (dr == System.Windows.Forms.DialogResult.OK) {
+                    pbCarImage.Image = null;
+                }
             }
-            
         }
 
         private void btDataOpen_Click(object sender, EventArgs e) {
