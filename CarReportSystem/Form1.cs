@@ -19,7 +19,7 @@ namespace CarReportSystem {
 
         public Form1() {
             InitializeComponent();
-            dgbCarReport.DataSource = _CarReports;
+            
 
         }
         private void initButton() { //ボタンの非表示制御
@@ -62,6 +62,10 @@ namespace CarReportSystem {
             }
         }
         private void Form1_Load(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202010DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableAdapter.Fill(this.infosys202010DataSet.CarReport);
+            dgbCarReport.Columns[0].Visible = false;
+
             initButton();
             DataCountLabel();
             timerUpdateStatusStrip = new Timer();
@@ -93,7 +97,8 @@ namespace CarReportSystem {
 
                 };
                 
-                this._CarReports.Insert(0, obj);
+                //this._CarReports.Insert(0, obj);
+                
                 setCBAuthor(cbAuthorName.Text);
                 setCBCarName(cbCarName.Text);
                 dgbCarReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -128,17 +133,26 @@ namespace CarReportSystem {
             //選択したレコードを取り出す
             //DataGridView で選択した行のインデックス
             if (dgbCarReport.CurrentRow != null) {
-                CarReport selectedCarReport = _CarReports[dgbCarReport.CurrentRow.Index];
-            
-            
-                if (selectedCarReport.Date >= dtpWriteDate.MinDate &&selectedCarReport.Date <= dtpWriteDate.MaxDate) {
-                    dtpWriteDate.Value = selectedCarReport.Date;
-                }
-                cbAuthorName.Text = selectedCarReport.Author;
-                CheckMakerButton(selectedCarReport.Maker);
-                cbCarName.Text = selectedCarReport.CarName;
-                tbReport.Text    = selectedCarReport.Report;
-                pbCarImage.Image = selectedCarReport.Picture;
+                //CarReport selectedCarReport = _CarReports[dgbCarReport.CurrentRow.Index];
+
+
+                //if (selectedCarReport.Date >= dtpWriteDate.MinDate &&selectedCarReport.Date <= dtpWriteDate.MaxDate) {
+                //    dtpWriteDate.Value = selectedCarReport.Date;
+                //}
+                //cbAuthorName.Text = selectedCarReport.Author;
+                //CheckMakerButton(selectedCarReport.Maker);
+                //cbCarName.Text = selectedCarReport.CarName;
+                //tbReport.Text    = selectedCarReport.Report;
+                //pbCarImage.Image = selectedCarReport.Picture;
+
+                var test =  dgbCarReport.CurrentRow.Cells[2].Value.ToString();
+               
+                dtpWriteDate.Value = DateTime.Parse(dgbCarReport.CurrentRow.Cells[1].Value.ToString());
+                cbAuthorName.Text = dgbCarReport.CurrentRow.Cells[2].Value.ToString();
+                cbCarName.Text = dgbCarReport.CurrentRow.Cells[4].ToString();
+                tbReport.Text = dgbCarReport.CurrentRow.Cells[5].Value.ToString();
+                //pbCarImage.Image 
+
                 initButton();
             }
         }
@@ -208,28 +222,29 @@ namespace CarReportSystem {
         }
 
         private void btDataOpen_Click(object sender, EventArgs e) {
-            if (ofdOpenData.ShowDialog() == DialogResult.OK) {
-                fileName = ofdOpenData.FileName;
-                tsmiUpDataSave.Enabled = true;
-                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open, FileAccess.Read)) {
-                    try {
+            //if (ofdOpenData.ShowDialog() == DialogResult.OK) {
+            //    fileName = ofdOpenData.FileName;
+            //    tsmiUpDataSave.Enabled = true;
+            //    using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open, FileAccess.Read)) {
+            //        try {
 
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        //逆シリアル化して読み込む
-                        _CarReports = (BindingList<CarReport>)formatter.Deserialize(fs);
-                        //データグリッドビューに再設定
-                        dgbCarReport.DataSource = _CarReports;
-                        //選択されてる箇所の表示
-                        dgbCarReport_CClick(sender, e);
-                    } catch (SerializationException a) {
+            //            BinaryFormatter formatter = new BinaryFormatter();
+            //            //逆シリアル化して読み込む
+            //            _CarReports = (BindingList<CarReport>)formatter.Deserialize(fs);
+            //            //データグリッドビューに再設定
+            //            dgbCarReport.DataSource = _CarReports;
+            //            //選択されてる箇所の表示
+            //            dgbCarReport_CClick(sender, e);
+            //        } catch (SerializationException a) {
 
-                        Console.WriteLine("Failed to deserialize. Reason: " + a.Message);
-                        throw;
-                    }
-                }
-                dgbCarReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                DataCountLabel();
-            }
+            //            Console.WriteLine("Failed to deserialize. Reason: " + a.Message);
+            //            throw;
+            //        }
+            //    }
+            //    dgbCarReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //    DataCountLabel();
+            //}
+            this.carReportTableAdapter.Fill(this.infosys202010DataSet.CarReport);
         }
 
         private void btDataSave_Click(object sender, EventArgs e) {
