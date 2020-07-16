@@ -15,7 +15,7 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         BindingList<CarReport> _CarReports = new BindingList<CarReport>();
         Timer timerUpdateStatusStrip;
-        string fileName;
+        
 
         public Form1() {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace CarReportSystem {
 
         }
         private void initButton() { //ボタンの非表示制御
-            if (_CarReports.Count > 0) {
+            if (dgbCarReport.Rows.Count > 0) {
                 btDataUpDate.Enabled = true;
                 btDataDelete.Enabled = true;
             } else {
@@ -64,7 +64,7 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202010DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202010DataSet.CarReport);
-            dgbCarReport.Columns[0].Visible = false;
+            //dgbCarReport.Columns[0].Visible = false;
 
             initButton();
             DataCountLabel();
@@ -72,6 +72,18 @@ namespace CarReportSystem {
             timerUpdateStatusStrip.Interval = 100;
             timerUpdateStatusStrip.Enabled = true;
             timerUpdateStatusStrip.Tick += timerUpdateStatusStrip_Tick;
+
+            for (int i = 0; i < dgbCarReport.RowCount; i++) {
+                if (dgbCarReport.Rows[i].Cells[4].Value != null) {
+                    setCBCarName(dgbCarReport.Rows[i].Cells[4].Value.ToString());
+                }
+            }
+            for (int i = 0; i < dgbCarReport.RowCount; i++) {
+                if (dgbCarReport.Rows[i].Cells[2].Value != null) {
+                    setCBAuthor(dgbCarReport.Rows[i].Cells[2].Value.ToString());
+                }
+            }
+
         }
 
         private void timerUpdateStatusStrip_Tick(object sender, EventArgs e) {
@@ -87,15 +99,15 @@ namespace CarReportSystem {
             if (cbAuthorName.Text == "") {
                 MessageBox.Show("記録者を入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
-                CarReport obj = new CarReport {
-                    Date = dtpWriteDate.Value,
-                    Author = cbAuthorName.Text,
-                    Maker =  ReMakerButton(),
-                    CarName = cbCarName.Text,
-                    Report = tbReport.Text,
-                    Picture = pbCarImage.Image
+                dgbCarReport.Rows.Add(dtpWriteDate.Value,
+                    cbAuthorName.Text,
+                    ReMakerButton(),
+                    cbCarName.Text,
+                    tbReport.Text,
+                    ImageToByteArray(pbCarImage.Image)
+                );
 
-                };
+                
                 
                 //this._CarReports.Insert(0, obj);
                 
@@ -117,60 +129,89 @@ namespace CarReportSystem {
         }
 
         private void btDataUpDate_Click(object sender, EventArgs e) {
-            CarReport selectedReport = _CarReports[dgbCarReport.CurrentRow.Index];
-            selectedReport.Author = cbAuthorName.Text;
-            selectedReport.Date = dtpWriteDate.Value;
-            selectedReport.Maker = ReMakerButton();
-            selectedReport.CarName = cbCarName.Text;
-            selectedReport.Report = tbReport.Text;
-            selectedReport.Picture = pbCarImage.Image;
+            dgbCarReport.CurrentRow.Cells[0].Value = dgbCarReport.CurrentRow.Index;
+            dgbCarReport.CurrentRow.Cells[2].Value  = cbAuthorName.Text;
+            dgbCarReport.CurrentRow.Cells[1].Value = dtpWriteDate.Value;
+            dgbCarReport.CurrentRow.Cells[3].Value = ReMakerButton();
+            dgbCarReport.CurrentRow.Cells[4].Value = cbCarName.Text;
+            dgbCarReport.CurrentRow.Cells[5].Value = tbReport.Text;
+            dgbCarReport.CurrentRow.Cells[6].Value = ImageToByteArray(pbCarImage.Image);
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202010DataSet);
+
             setCBAuthor(cbAuthorName.Text);
             setCBCarName(cbCarName.Text);
             dgbCarReport.Refresh();
+
+            tsmiUpDataSave.Enabled = true;
 
         }
         private void dgbCarReport_CClick(object sender, EventArgs e) {
             //選択したレコードを取り出す
             //DataGridView で選択した行のインデックス
             if (dgbCarReport.CurrentRow != null) {
-                //CarReport selectedCarReport = _CarReports[dgbCarReport.CurrentRow.Index];
+                //var test =  dgbCarReport.CurrentRow.Cells[2].Value.ToString();
+                if (dgbCarReport.CurrentRow != dgbCarReport.Rows[1]) {
+                    dtpWriteDate.Value = DateTime.Parse(dgbCarReport.CurrentRow.Cells[1].Value.ToString());
 
+                    cbAuthorName.Text = dgbCarReport.CurrentRow.Cells[2].Value.ToString();
+                    cbCarName.Text = dgbCarReport.CurrentRow.Cells[4].Value.ToString();
+                    tbReport.Text = dgbCarReport.CurrentRow.Cells[5].Value.ToString();
+                    //pbCarImage.Image 
 
-                //if (selectedCarReport.Date >= dtpWriteDate.MinDate &&selectedCarReport.Date <= dtpWriteDate.MaxDate) {
-                //    dtpWriteDate.Value = selectedCarReport.Date;
-                //}
-                //cbAuthorName.Text = selectedCarReport.Author;
-                //CheckMakerButton(selectedCarReport.Maker);
-                //cbCarName.Text = selectedCarReport.CarName;
-                //tbReport.Text    = selectedCarReport.Report;
-                //pbCarImage.Image = selectedCarReport.Picture;
+                    if (dgbCarReport.CurrentRow.Cells[6].Value != null) {
+                        
+                     //  pbCarImage.Image = ByteArrayToImage(dgbCarReport.CurrentRow.Cells[6].Value);
+                    }
 
-                var test =  dgbCarReport.CurrentRow.Cells[2].Value.ToString();
-               
-                dtpWriteDate.Value = DateTime.Parse(dgbCarReport.CurrentRow.Cells[1].Value.ToString());
-                cbAuthorName.Text = dgbCarReport.CurrentRow.Cells[2].Value.ToString();
-                cbCarName.Text = dgbCarReport.CurrentRow.Cells[4].ToString();
-                tbReport.Text = dgbCarReport.CurrentRow.Cells[5].Value.ToString();
-                //pbCarImage.Image 
+                    switch (dgbCarReport.CurrentRow.Cells[3].Value.ToString()) {
+                        case "DEFAULT":
+                        radioButtonClear();
+                        break;
+                        case "トヨタ":
+                        rbToyota.Checked = true;
+                        break;
+                        case "日産":
+                        rbNissan.Checked = true;
+                        break;
+                        case "ホンダ":
+                        rbHonda.Checked = true;
+                        break;
+                        case "スバル":
+                        rbSubaru.Checked = true;
+                        break;
+                        case "外車":
+                        rbForeignCar.Checked = true;
+                        break;
+                        case "その他":
+                        rbEtCetera.Checked = true;
+                        break;
 
+                    }
+                }
                 initButton();
             }
         }
-        private CarMaker ReMakerButton() {
-            var RadioButtonChecked_InGroup = gbMaker.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
-            string str = "";
-            if (RadioButtonChecked_InGroup == null) {
-                str = "DEFAULT";
+        private string ReMakerButton() {
+            string button= "";
+            if (rbToyota.Checked) {
+                button = "トヨタ";
+            }else if (rbNissan.Checked) {
+                button = "日産";
+            }else if (rbHonda.Checked) {
+                button = "ホンダ";
+            }else if (rbSubaru.Checked) {
+                button = "スバル";
+            }else if (rbForeignCar.Checked) {
+                button = "外車";
+            }else if(rbEtCetera.Checked){
+                button = "その他";
             } else {
-                str = RadioButtonChecked_InGroup.Text;
+                button = "DEFAULT";
             }
-            CarMaker cm = (CarMaker)Enum.Parse(typeof(CarMaker), str);
-            return cm;
-            
-            //先生の
-            //ラジオボタンのタグに数字を登録して、それで判断してる
-            //RadioButton selectMaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
-            //return (CarMaker)int.Parse(selectMaker.Tag.ToString());
+
+            return button;
         }
         private void CheckMakerButton(CarMaker cm) {
             switch (cm) {
@@ -248,33 +289,9 @@ namespace CarReportSystem {
         }
 
         private void btDataSave_Click(object sender, EventArgs e) {
-            if (sfdSaveData.ShowDialog() == DialogResult.OK) {
-
-                BinaryFormatter formatter = new BinaryFormatter();
-                //ファイルストリームを生成
-                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create)) {
-                    try {
-                        //シリアル化して保存
-                        formatter.Serialize(fs, _CarReports);
-                    } catch (SerializationException a) {
-                        Console.WriteLine("Failed to serialize. Reason: " + a.Message);
-                        throw;
-                    }
-                }
-            }
-        }
-        private void btDataSave_Click2(object sender, EventArgs e) {
-                BinaryFormatter formatter = new BinaryFormatter();
-                //ファイルストリームを生成
-                using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
-                    try {
-                        //シリアル化して保存
-                        formatter.Serialize(fs, _CarReports);
-                    } catch (SerializationException a) {
-                        Console.WriteLine("Failed to serialize. Reason: " + a.Message);
-                        throw;
-                    }
-                }
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202010DataSet);
         }
         private void UpdateDateTimeStatusBar() {
             //現在の日時を取得する
@@ -289,6 +306,20 @@ namespace CarReportSystem {
         }
         private void DataCountLabel() {
             tsslDataCount.Text = "データ件数：" + _CarReports.Count.ToString();
+        }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] byteData) {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(byteData);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img) {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return byteData;
         }
     }
     

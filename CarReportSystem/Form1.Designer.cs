@@ -64,7 +64,6 @@
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.記事データを開くOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUpDataSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.名前を付けて保存するToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.終了するXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbMaker = new System.Windows.Forms.GroupBox();
@@ -193,8 +192,10 @@
             this.pictureDataGridViewImageColumn});
             this.dgbCarReport.DataSource = this.carReportBindingSource;
             this.dgbCarReport.Location = new System.Drawing.Point(89, 344);
+            this.dgbCarReport.MultiSelect = false;
             this.dgbCarReport.Name = "dgbCarReport";
             this.dgbCarReport.RowTemplate.Height = 21;
+            this.dgbCarReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgbCarReport.Size = new System.Drawing.Size(725, 214);
             this.dgbCarReport.TabIndex = 5;
             this.dgbCarReport.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbCarReport_CClick);
@@ -397,7 +398,6 @@
             this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.記事データを開くOToolStripMenuItem,
             this.tsmiUpDataSave,
-            this.名前を付けて保存するToolStripMenuItem,
             this.toolStripSeparator1,
             this.終了するXToolStripMenuItem});
             this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
@@ -420,14 +420,7 @@
             this.tsmiUpDataSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.tsmiUpDataSave.Size = new System.Drawing.Size(180, 22);
             this.tsmiUpDataSave.Text = "保存する(&S)";
-            this.tsmiUpDataSave.Click += new System.EventHandler(this.btDataSave_Click2);
-            // 
-            // 名前を付けて保存するToolStripMenuItem
-            // 
-            this.名前を付けて保存するToolStripMenuItem.Name = "名前を付けて保存するToolStripMenuItem";
-            this.名前を付けて保存するToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.名前を付けて保存するToolStripMenuItem.Text = "名前を付けて保存する";
-            this.名前を付けて保存するToolStripMenuItem.Click += new System.EventHandler(this.btDataSave_Click);
+            this.tsmiUpDataSave.Click += new System.EventHandler(this.btDataSave_Click);
             // 
             // toolStripSeparator1
             // 
@@ -575,7 +568,6 @@
         private System.Windows.Forms.ToolStripMenuItem 記事データを開くOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpDataSave;
         private System.Windows.Forms.ToolStripMenuItem 終了するXToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 名前を付けて保存するToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.SaveFileDialog sfdSaveData2;
         private System.Windows.Forms.ToolStripStatusLabel tsslDataCount;
