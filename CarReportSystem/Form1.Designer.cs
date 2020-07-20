@@ -181,6 +181,7 @@
             // dgbCarReport
             // 
             this.dgbCarReport.AutoGenerateColumns = false;
+            this.dgbCarReport.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgbCarReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbCarReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -191,12 +192,13 @@
             this.reportDataGridViewTextBoxColumn,
             this.pictureDataGridViewImageColumn});
             this.dgbCarReport.DataSource = this.carReportBindingSource;
+            this.dgbCarReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dgbCarReport.Location = new System.Drawing.Point(89, 344);
             this.dgbCarReport.MultiSelect = false;
             this.dgbCarReport.Name = "dgbCarReport";
             this.dgbCarReport.RowTemplate.Height = 21;
             this.dgbCarReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgbCarReport.Size = new System.Drawing.Size(725, 214);
+            this.dgbCarReport.Size = new System.Drawing.Size(725, 261);
             this.dgbCarReport.TabIndex = 5;
             this.dgbCarReport.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbCarReport_CClick);
             this.dgbCarReport.Click += new System.EventHandler(this.dgbCarReport_CClick);
@@ -409,7 +411,7 @@
             // 
             this.記事データを開くOToolStripMenuItem.Name = "記事データを開くOToolStripMenuItem";
             this.記事データを開くOToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.記事データを開くOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.記事データを開くOToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.記事データを開くOToolStripMenuItem.Text = "接続(&O)";
             this.記事データを開くOToolStripMenuItem.Click += new System.EventHandler(this.btDataOpen_Click);
             // 
@@ -418,20 +420,20 @@
             this.tsmiUpDataSave.Enabled = false;
             this.tsmiUpDataSave.Name = "tsmiUpDataSave";
             this.tsmiUpDataSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiUpDataSave.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUpDataSave.Size = new System.Drawing.Size(172, 22);
             this.tsmiUpDataSave.Text = "保存する(&S)";
             this.tsmiUpDataSave.Click += new System.EventHandler(this.btDataSave_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
             // 
             // 終了するXToolStripMenuItem
             // 
             this.終了するXToolStripMenuItem.Name = "終了するXToolStripMenuItem";
             this.終了するXToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.終了するXToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了するXToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.終了するXToolStripMenuItem.Text = "終了する(&X)";
             this.終了するXToolStripMenuItem.Click += new System.EventHandler(this.btExit_Click);
             // 
@@ -454,7 +456,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslTime,
             this.tsslDataCount});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 561);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 608);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(826, 22);
             this.statusStrip1.TabIndex = 10;
@@ -490,7 +492,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 583);
+            this.ClientSize = new System.Drawing.Size(826, 630);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbMaker);
             this.Controls.Add(this.pbCarImage);
