@@ -71,8 +71,14 @@ namespace CarReportSystem {
             timerUpdateStatusStrip.Interval = 100;
             timerUpdateStatusStrip.Enabled = true;
             timerUpdateStatusStrip.Tick += timerUpdateStatusStrip_Tick;
+            cbSerchMaker.Items.Add("トヨタ");
+            cbSerchMaker.Items.Add("日産");
+            cbSerchMaker.Items.Add("ホンダ");
+            cbSerchMaker.Items.Add("スバル");
+            cbSerchMaker.Items.Add("外車");
+            cbSerchMaker.Items.Add("その他");
+            cbSerchMaker.Items.Add("DEFAULT");
 
-            
 
         }
 
@@ -330,6 +336,15 @@ namespace CarReportSystem {
 
         private void 新規作成ToolStripMenuItem_Click(object sender, EventArgs e) {
             inputAllClear();
+        }
+
+        private void btSerch_Click(object sender, EventArgs e) {
+            if (chbDateSerch.Checked) {
+                this.carReportTableAdapter.FillBydatenull(this.infosys202010DataSet.CarReport, cbSerchMaker.Text, tbSerchCarName.Text);
+            } else {
+                this.carReportTableAdapter.FillByCarName(this.infosys202010DataSet.CarReport, tbSerchCarName.Text, dtpSerch.Value.ToString(), cbSerchMaker.Text);
+            }
+            
         }
     }
     

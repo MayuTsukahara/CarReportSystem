@@ -72,13 +72,18 @@
             this.tsslTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslDataCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.sfdSaveData2 = new System.Windows.Forms.SaveFileDialog();
-            this.carReportTableAdapter = new CarReportSystem.infosys202010DataSetTableAdapters.CarReportTableAdapter();
-            this.tableAdapterManager = new CarReportSystem.infosys202010DataSetTableAdapters.TableAdapterManager();
             this.label7 = new System.Windows.Forms.Label();
             this.tbSerchCarName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbSerchMaker = new System.Windows.Forms.ComboBox();
+            this.dtpSerch = new System.Windows.Forms.DateTimePicker();
             this.btSerch = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.carReportTableAdapter = new CarReportSystem.infosys202010DataSetTableAdapters.CarReportTableAdapter();
+            this.tableAdapterManager = new CarReportSystem.infosys202010DataSetTableAdapters.TableAdapterManager();
+            this.chbDateSerch = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgbCarReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202010DataSet)).BeginInit();
@@ -419,7 +424,7 @@
             // 
             this.記事データを開くOToolStripMenuItem.Name = "記事データを開くOToolStripMenuItem";
             this.記事データを開くOToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.記事データを開くOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.記事データを開くOToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.記事データを開くOToolStripMenuItem.Text = "接続(&O)";
             this.記事データを開くOToolStripMenuItem.Click += new System.EventHandler(this.btDataOpen_Click);
             // 
@@ -427,7 +432,7 @@
             // 
             this.新規作成ToolStripMenuItem.Name = "新規作成ToolStripMenuItem";
             this.新規作成ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.新規作成ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新規作成ToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.新規作成ToolStripMenuItem.Text = "新規作成&N)";
             this.新規作成ToolStripMenuItem.Click += new System.EventHandler(this.新規作成ToolStripMenuItem_Click);
             // 
@@ -436,20 +441,20 @@
             this.tsmiUpDataSave.Enabled = false;
             this.tsmiUpDataSave.Name = "tsmiUpDataSave";
             this.tsmiUpDataSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiUpDataSave.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUpDataSave.Size = new System.Drawing.Size(177, 22);
             this.tsmiUpDataSave.Text = "保存する(&S)";
             this.tsmiUpDataSave.Click += new System.EventHandler(this.btDataSave_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 6);
             // 
             // 終了するXToolStripMenuItem
             // 
             this.終了するXToolStripMenuItem.Name = "終了するXToolStripMenuItem";
             this.終了するXToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.終了するXToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了するXToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.終了するXToolStripMenuItem.Text = "終了する(&X)";
             this.終了するXToolStripMenuItem.Click += new System.EventHandler(this.btExit_Click);
             // 
@@ -494,16 +499,6 @@
             // 
             this.sfdSaveData2.Title = "保存する";
             // 
-            // carReportTableAdapter
-            // 
-            this.carReportTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
-            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202010DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -532,7 +527,12 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.groupBox1.Controls.Add(this.chbDateSerch);
+            this.groupBox1.Controls.Add(this.cbSerchMaker);
+            this.groupBox1.Controls.Add(this.dtpSerch);
             this.groupBox1.Controls.Add(this.btSerch);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.tbSerchCarName);
             this.groupBox1.Location = new System.Drawing.Point(888, 42);
@@ -542,14 +542,68 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索";
             // 
+            // cbSerchMaker
+            // 
+            this.cbSerchMaker.FormattingEnabled = true;
+            this.cbSerchMaker.Location = new System.Drawing.Point(49, 123);
+            this.cbSerchMaker.Name = "cbSerchMaker";
+            this.cbSerchMaker.Size = new System.Drawing.Size(217, 20);
+            this.cbSerchMaker.TabIndex = 14;
+            // 
+            // dtpSerch
+            // 
+            this.dtpSerch.Location = new System.Drawing.Point(49, 72);
+            this.dtpSerch.Name = "dtpSerch";
+            this.dtpSerch.Size = new System.Drawing.Size(217, 19);
+            this.dtpSerch.TabIndex = 13;
+            // 
             // btSerch
             // 
-            this.btSerch.Location = new System.Drawing.Point(191, 72);
+            this.btSerch.Location = new System.Drawing.Point(194, 183);
             this.btSerch.Name = "btSerch";
             this.btSerch.Size = new System.Drawing.Size(75, 23);
             this.btSerch.TabIndex = 12;
             this.btSerch.Text = "実行";
             this.btSerch.UseVisualStyleBackColor = true;
+            this.btSerch.Click += new System.EventHandler(this.btSerch_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 72);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "日付";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1, 126);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "メーカー";
+            // 
+            // carReportTableAdapter
+            // 
+            this.carReportTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
+            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202010DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // chbDateSerch
+            // 
+            this.chbDateSerch.AutoSize = true;
+            this.chbDateSerch.Location = new System.Drawing.Point(49, 97);
+            this.chbDateSerch.Name = "chbDateSerch";
+            this.chbDateSerch.Size = new System.Drawing.Size(110, 16);
+            this.chbDateSerch.TabIndex = 15;
+            this.chbDateSerch.Text = "日付を検索しない";
+            this.chbDateSerch.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -657,6 +711,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btSerch;
+        private System.Windows.Forms.DateTimePicker dtpSerch;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbSerchMaker;
+        private System.Windows.Forms.CheckBox chbDateSerch;
     }
 }
 
