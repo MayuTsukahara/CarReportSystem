@@ -340,11 +340,13 @@ namespace CarReportSystem {
 
         private void btSerch_Click(object sender, EventArgs e) {
             if (chbDateSerch.Checked) {
-                this.carReportTableAdapter.FillBydatenull(this.infosys202010DataSet.CarReport, cbSerchMaker.Text, tbSerchCarName.Text);
+                this.carReportTableAdapter.FillBydatenull(this.infosys202010DataSet.CarReport, cbSerchMaker.Text, tbSerchCarName.Text,tbAuthor.Text);
             } else {
-                this.carReportTableAdapter.FillByCarName(this.infosys202010DataSet.CarReport, tbSerchCarName.Text, dtpSerch.Value.ToString(), cbSerchMaker.Text);
+                this.carReportTableAdapter.FillByCarName(this.infosys202010DataSet.CarReport, tbSerchCarName.Text, dtpSerch.Value.ToString(), cbSerchMaker.Text,tbAuthor.Text);
             }
             
+
+
         }
     }
     
